@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextClock;
@@ -20,7 +23,23 @@ public class addActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
     }
-    public void addNewNote(View view){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.newmenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.submitbutton:
+                addNewNote();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void addNewNote(){
         String note=((EditText) findViewById(R.id.editNote)).getText().toString();
         if(note.length()==0)
             return;
@@ -35,8 +54,6 @@ public class addActivity extends AppCompatActivity {
         edit.putInt("Count", count);
         Log.i("addact","new count is "+count+" note received is "+note);
         edit.commit();
-//        Intent intent=new Intent(this,Init.class);
-//       startActivity(intent);
         finish();
     }
 }
