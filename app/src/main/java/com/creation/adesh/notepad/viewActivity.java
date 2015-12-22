@@ -50,15 +50,13 @@ public class viewActivity extends AppCompatActivity {
         int count=pref.getInt("Count", 0);
         String note;
         Log.i("viewActivity", "count is " + count);
-        RelativeLayout.LayoutParams params;// = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT);
-        //params.setMargins(10,10,10,10);
+        RelativeLayout.LayoutParams params;
         RelativeLayout l = (RelativeLayout) findViewById(R.id.view_act);
-        //FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab);
         l.removeAllViews();
-        //l.addView(fab);
         if(count==0){
             TextView t = new TextView(this);
-            t.setText("\t\tNo notes available.");
+            t.setText("\tNo notes available.");
+            t.setPadding(30, 30, 30, 30);
             t.setTextSize(20);
             t.setTextColor(Color.WHITE);
             t.setGravity(Gravity.CENTER);
@@ -80,10 +78,8 @@ public class viewActivity extends AppCompatActivity {
             t.setId(count);
             params= new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,  RelativeLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(10,10,10,10);
-            if(count!=origcount){
-                //params.removeRule(RelativeLayout.BELOW);
+            if(count!=origcount)
                 params.addRule(RelativeLayout.BELOW,count+1);
-            }
             t.setLayoutParams(params);
             l.addView(t,params);
             count--;
